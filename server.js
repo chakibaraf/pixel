@@ -1,11 +1,28 @@
-// Importez le module Express
 const express = require("express");
-
-// Créez un nouvel objet Express
 const app = express();
+const bodyParser = require("body-parser");
 
-// Définissez le chemin d'accès aux requêtes POST
-app.post("/pixel/open", handlePost);
+app.use(bodyParser.json());
+app.use("/pixel", express.static("./pixel"));
 
-// Démarrez le serveur web
-app.listen(3000);
+app.post("/pixel/open", (req, res) => {
+    // Vérifiez que la requête est valide
+    if (req.headers["content-type"] !== "application/json") {
+        res.status(400).send("Invalid request");
+        return;
+    }
+
+    // Extrayez les données de la requête
+    const data = req.body;
+
+    // Enregistrez les données
+    console.log("Pixel ouvert : action=%s, email_id=%s", data["action"], data["email_id"]);
+
+    // Envoyez une réponse
+    res.status(200).send("OK");
+});
+
+const port = 3000;
+app.listen(port, () => {
+    console.log(`Serveur en cours d'écoute sur le port ${port}`);
+});
