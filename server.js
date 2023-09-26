@@ -38,7 +38,7 @@ function onImageLoad() {
     if (img.complete) {
       // Envoyez une requête POST à votre serveur web
       const xhr = new XMLHttpRequest();
-      xhr.open("POST", "https://example.com/pixel/open");
+      xhr.open("POST", "https://chakibaraf.github.io/pixel/open");
       xhr.setRequestHeader("Content-Type", "application/json");
       xhr.send(JSON.stringify({
         action: "open_email",
