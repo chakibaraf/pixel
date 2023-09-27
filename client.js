@@ -32,11 +32,10 @@ document.addEventListener("DOMContentLoaded", function () {
         if (permission === "granted") {
           // Ajoutez un gestionnaire d'événements load à l'image
           img.addEventListener("load", function () {
-            // Créez une nouvelle image pour effectuer la demande GET
-            const pixelImg = new Image();
-            pixelImg.src = "http://localhost:3000/pixel/open"; // L'URL de suivi sur le serveur
-            pixelImg.style.display = "none"; // Rendez l'image invisible
-            document.body.appendChild(pixelImg); // Ajoutez l'image au DOM
+            // Effectuez une demande GET vers le serveur pour enregistrer l'ouverture de l'e-mail
+            const xhr = new XMLHttpRequest();
+            xhr.open("GET", "http://localhost:3000/pixel/open"); // Utilisez l'URL de suivi sur le serveur
+            xhr.send();
   
             // Envoyez une notification lorsque l'e-mail est ouvert
             new Notification("L'e-mail a été ouvert !");

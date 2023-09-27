@@ -1,4 +1,4 @@
-// Importez le module Express
+/// Importez le module Express
 const express = require("express");
 const bodyParser = require("body-parser");
 const moment = require("moment");
@@ -16,37 +16,34 @@ app.use((req, res, next) => {
 
 app.use(bodyParser.json());
 
-app.post("/pixel/open", handlePost);
+app.get("/pixel/open", handlePixelOpen); // Changez cette route en GET
 
 app.listen(port, () => {
   console.log(`Serveur ouvert sur le port ${port}`);
 });
 
-function handlePost(req, res) {
-  // Vérifiez que la requête est valide
-  if (req.headers["content-type"] !== "application/json") {
-    return res.status(400).send("Requête invalide");
-  }
+function handlePixelOpen(req, res) {
+  // Obtenez la date et l'heure actuelles
+  const timestamp = moment().format();
 
-   // Obtenez la date et l'heure actuelles
-   const timestamp = moment().format();
-
-   // Obtenez l'adresse IP du client
-   const ip = req.headers["x-forwarded-for"] || req.connection.remoteAddress;
-
-  // Extrayez les données de la requête
-  const data = req.body;
+  // Obtenez l'adresse IP du client
+  const ip = req.headers["x-forwarded-for"] || req.connection.remoteAddress;
 
   // Enregistrez les données
   console.log(
-    "Pixel ouvert : action=%s, email_id=%s, timestamp=%s",
-    data["action"],
-    data["email_id"],
+    "Pixel ouvert : timestamp=%s, IP=%s",
     timestamp,
     ip
   );
 
-  // Envoyez une réponse
-  res.status(200).send("OK");
+  // Répondez avec une image transparente
+  const transparentPixel = Buffer.from(
+    "R0lGODlhAQABAIAAAAUEBAAAACwAAAAAAQABAAACAkQBADs=",
+    "base64"
+  );
+  res.writeHead(200, {
+    "Content-Type": "image/gif",
+    "Content-Length": transparentPixel.length,
+  });
+  res.end(transparentPixel);
 }
-
