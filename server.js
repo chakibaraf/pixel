@@ -1,6 +1,7 @@
 // Importez le module Express
 const express = require("express");
 const bodyParser = require("body-parser");
+const moment = require("moment");
 
 const app = express();
 const port = 3000;
@@ -15,7 +16,7 @@ app.use((req, res, next) => {
 
 app.use(bodyParser.json());
 
-app.post("/pixel//open", handlePost);
+app.post("/pixel/open", handlePost);
 
 app.listen(port, () => {
   console.log(`Serveur ouvert sur le port ${port}`);
@@ -27,6 +28,12 @@ function handlePost(req, res) {
     return res.status(400).send("Requête invalide");
   }
 
+   // Obtenez la date et l'heure actuelles
+   const timestamp = moment().format();
+
+   // Obtenez l'adresse IP du client
+   const ip = req.headers["x-forwarded-for"] || req.connection.remoteAddress;
+
   // Extrayez les données de la requête
   const data = req.body;
 
@@ -35,7 +42,8 @@ function handlePost(req, res) {
     "Pixel ouvert : action=%s, email_id=%s, timestamp=%s",
     data["action"],
     data["email_id"],
-    data["timestamp"]
+    timestamp,
+    ip
   );
 
   // Envoyez une réponse
