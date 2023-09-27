@@ -15,7 +15,7 @@ app.use((req, res, next) => {
 
 app.use(bodyParser.json());
 
-app.post("/pixel/open", handlePost);
+app.post("/pixel//open", handlePost);
 
 app.listen(port, () => {
   console.log(`Serveur ouvert sur le port ${port}`);
