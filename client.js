@@ -7,7 +7,7 @@
       xhr.send(
         JSON.stringify({
           action: "open_email",
-          email_id: "1234567890",
+          email_id:  "1234567890",
         })
       );
   
@@ -39,6 +39,10 @@ document.addEventListener("DOMContentLoaded", function () {
   
             // Envoyez une notification lorsque l'e-mail est ouvert
             new Notification("L'e-mail a été ouvert !");
+            // Affichez également une alerte
+          alert("L'e-mail a été ouvert !");
+
+          
           });
         }
       });
