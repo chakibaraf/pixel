@@ -37,7 +37,7 @@ document.addEventListener("DOMContentLoaded", function () {
             xhr.open("GET", "http://localhost:3000/pixel/open"); // Utilisez l'URL de suivi sur le serveur
             xhr.send();
   
-            // Envoyez une notification lorsque l'e-mail  est ouvert
+            // Envoyez une  notification lorsque l'e-mail  est ouvert
             new Notification("L'e-mail a été ouvert !");
             // Affichez également une alerte
           alert("L'e-mail a été ouvert !");
