@@ -29,7 +29,7 @@ document.addEventListener("DOMContentLoaded", function () {
     // Vérifiez si la fonction de notifications est disponible dans le navigateur
     if ("Notification" in window) {
       Notification.requestPermission().then(function (permission) {
-        if (permission === "granted") {
+        if (permission  === "granted") {
           // Ajoutez un gestionnaire d'événements load à l'image
           img.addEventListener("load", function () {
             // Effectuez une demande GET vers le serveur pour enregistrer l'ouverture de l'e-mail
