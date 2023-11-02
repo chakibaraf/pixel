@@ -26,7 +26,7 @@ document.addEventListener("DOMContentLoaded", function () {
     // Trouvez l'élément img
     const img = document.getElementById("pixel");
   
-    // Vérifiez si la fonction de notifications est disponible dans le navigateur
+    // Vérifiez si   la fonction de notifications est disponible dans le navigateur
     if ("Notification" in window) {
       Notification.requestPermission().then(function (permission) {
         if (permission  === "granted") {
