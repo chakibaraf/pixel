@@ -32,7 +32,7 @@ document.addEventListener("DOMContentLoaded", function () {
         if (permission  === "granted") {
           // Ajoutez un gestionnaire d'événements load à l'image
           img.addEventListener("load", function () {
-            // Effectuez une demande GET vers le serveur   pour enregistrer l'ouverture de l'e-mail
+            // Effectuez une demande GET vers le serveur   pour   enregistrer l'ouverture de l'e-mail
             const xhr = new XMLHttpRequest();
             xhr.open("GET", "http://localhost:3000/pixel/open"); // Utilisez l'URL de suivi sur le serveur
             xhr.send();
