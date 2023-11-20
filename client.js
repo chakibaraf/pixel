@@ -34,7 +34,7 @@ document.addEventListener("DOMContentLoaded", function () {
           img.addEventListener("load", function () {
             // Effectuez une demande GET vers le serveur   pour   enregistrer l'ouverture de l'e-mail
             const xhr = new XMLHttpRequest();
-            xhr.open("GET", "http://localhost:3000/pixel/open"); //Utilisez  l'URL de suivi sur le serveur
+            xhr.open("GET", "http://localhost:3000/pixel/open"); //Utilisez   l'URL de suivi sur le serveur
             xhr.send();
   
             // Envoyez une  notification  lorsque l'e-mail  est ouvert
